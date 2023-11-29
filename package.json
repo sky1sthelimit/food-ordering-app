@@ -22,7 +22,7 @@
   },
   "homepage": "https://github.com/sky1sthelimit/namaste-react#readme",
   "devDependencies": {
-    "parcel": "^2.10.2",
+    "parcel": "^2.10.3",
     "process": "^0.11.10"
   },
   "dependencies": {
