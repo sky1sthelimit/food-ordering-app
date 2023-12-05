@@ -28,6 +28,14 @@
   width: 100px;
   margin: 1px;
 }
+
+
+.btn-container{
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+
 .res-cards-container {
   display: flex;
   flex-wrap: wrap;
@@ -46,6 +54,7 @@
 
 .res-card:hover{
   transform: scale(0.95); /* Shrink the div by 10% on hover */
+  cursor: pointer;
 }
 
 .res-card h3{
