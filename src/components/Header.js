@@ -1,7 +1,7 @@
-import { LOGO_URL } from "../utils/constants";
+import { LOGO_URL, LOGO_URL2 } from "../utils/constants";
 
 const Logo = () => {
-  return <img className="logo" src={LOGO_URL}></img>;
+  return <img className="logo" src={LOGO_URL2}></img>;
 };
 
 const Header = () => {
