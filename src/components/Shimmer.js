@@ -1,12 +1,22 @@
+import ShimmerCard from "./ShimmerCard";
+
 const Shimmer = () => {
-  <div className="shimmer-container">
-    <div className="shimmer-card">
-      <div className="shimmer-image-pseudo"></div>
-      <div className="shimmer-h2-pseudo"></div>
-      <div className="shimmer-h2-pseudo"></div>
-      <div className="shimmer-h4-pseudo"></div>
+  return (
+    <div className="shimmer-container">
+      <ShimmerCard />
+      <ShimmerCard />
+      <ShimmerCard />
+      <ShimmerCard />
+      <ShimmerCard />
+      <ShimmerCard />
+      <ShimmerCard />
+      <ShimmerCard />
+      <ShimmerCard />
+      <ShimmerCard />
+      <ShimmerCard />
+      <ShimmerCard />
     </div>
-  </div>;
+  );
 };
 
 export default Shimmer;

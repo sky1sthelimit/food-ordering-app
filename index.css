@@ -34,6 +34,13 @@
   margin: 1px;
 }
 
+.shimmer-logo {
+  width: 100px;
+  height: 30px;
+  margin: 1px;
+  background-color: rgb(4, 4, 4);
+}
+
 .btn-container {
   display: flex;
   margin-top: 10px;
@@ -131,11 +138,17 @@
 }
 
 .shimmer-h2-pseudo {
-  margin-top: 2px;
-  background-color: #f0f0f0;
+  margin-top: 10px;
+  margin-left: 5%;
+  height: 4%;
+  width: 90%;
+  background-color: #d8d6d6;
 }
 
 .shimmer-h4-pseudo {
-  margin-top: 2px;
-  background-color: #f0f0f0;
+  margin-top: 10px;
+  margin-left: 5%;
+  width: 90%;
+  height: 2%;
+  background-color: #d8d6d6;
 }

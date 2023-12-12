@@ -6,31 +6,42 @@ import Shimmer from "./Shimmer";
 
 export const Body = () => {
   let [restaurantList, setRestaurantList] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     fetchData();
   }, []);
 
   const fetchData = async () => {
-    const response = await fetch(SWIGGY_URL);
-    const json = await response.json();
-    setRestaurantList(
-      json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants
-    );
+    try {
+      const response = await fetch(SWIGGY_URL);
+      const json = await response.json();
+      setRestaurantList(
+        json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle
+          ?.restaurants
+      );
+    } catch (error) {
+      console.error("Error fetching data:", error);
+      // Handle the error (e.g., display an error message to the user)
+    } finally {
+      setLoading(false);
+    }
   };
 
+  //filter all restaurants having rating > 4
   const filterHighRatedRestaurants = () => {
-    let filteredListOfRestaurants = restaurants.filter((restaurant) => {
+    let filteredListOfRestaurants = restaurantList.filter((restaurant) => {
       return restaurant.info.avgRating >= 4;
     });
     setRestaurantList(filteredListOfRestaurants);
   };
 
   const allRestaurants = () => {
-    setRestaurantList(restaurants);
+    setLoading(true);
+    fetchData();
   };
 
-  return restaurantList.length === 0 ? (
+  return loading ? (
     <Shimmer />
   ) : (
     <div className="body">
