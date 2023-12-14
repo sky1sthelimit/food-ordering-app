@@ -7,6 +7,8 @@ import Shimmer from "./Shimmer";
 export const Body = () => {
   let [restaurantList, setRestaurantList] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [searchText, setSearchtext] = useState("");
+  const [filteredRestaurantList, setFilteredRestaurantList] = useState([]);
 
   useEffect(() => {
     fetchData();
@@ -17,6 +19,10 @@ export const Body = () => {
       const response = await fetch(SWIGGY_URL);
       const json = await response.json();
       setRestaurantList(
+        json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle
+          ?.restaurants
+      );
+      setFilteredRestaurantList(
         json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle
           ?.restaurants
       );
@@ -40,11 +46,41 @@ export const Body = () => {
     setLoading(true);
     fetchData();
   };
+  const inputTextHandler = (e) => {
+    setSearchtext(e.target.value);
+  };
+
+  const searchButtonClickHandler = () => {
+    let filteredResList = restaurantList.filter((res) => {
+      return res.info.name
+        .toLocaleLowerCase()
+        .includes(searchText.toLocaleLowerCase());
+    });
+    setFilteredRestaurantList(filteredResList);
+  };
+
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter") {
+      e.preventDefault(); // Prevents the default behavior of the Enter key in a form
+      searchButtonClickHandler();
+    }
+  };
 
   return loading ? (
     <Shimmer />
   ) : (
     <div className="body">
+      <div className="search-container">
+        <input
+          type="text"
+          value={searchText}
+          onChange={inputTextHandler}
+          onKeyDown={handleKeyDown}
+        ></input>
+        <button className="search-btn" onClick={searchButtonClickHandler}>
+          Search
+        </button>
+      </div>
       <div className="btn-container">
         <button className="remove-filter" onClick={allRestaurants}>
           All Restaurants
@@ -55,7 +91,7 @@ export const Body = () => {
       </div>
 
       <div className="res-cards-container">
-        {restaurantList.map((restaurant) => {
+        {filteredRestaurantList.map((restaurant) => {
           return <ResCard key={restaurant.info.id} restaurant={restaurant} />;
         })}
       </div>
