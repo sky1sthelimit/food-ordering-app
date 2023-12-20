@@ -2,11 +2,8 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import Header from "./components/Header";
 import Body from "./components/Body";
-import {
-  BrowserRouter,
-  RouterProvider,
-  createBrowserRouter,
-} from "react-router-dom";
+import { Outlet, RouterProvider, createBrowserRouter } from "react-router-dom";
+import Error from "./components/Error";
 
 //body and its components
 
@@ -14,7 +11,7 @@ const AppLayout = () => {
   return (
     <div className="app">
       <Header />
-      <Body />
+      <Outlet />
     </div>
   );
 };
@@ -23,14 +20,21 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <AppLayout />,
-  },
-  {
-    path: "new/pew",
-    element: <h3>New1 just being got rendered!</h3>,
-  },
-  {
-    path: "new/pew",
-    element: <h3>New just being got rendered!</h3>,
+    errorElement: <Error />,
+    children: [
+      {
+        path: "/",
+        element: <Body />,
+      },
+      {
+        path: "/contact",
+        element: <h3>Contact Us!</h3>,
+      },
+      {
+        path: "/about",
+        element: <h3>About US!</h3>,
+      },
+    ],
   },
 ]);
 
