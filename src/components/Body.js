@@ -19,11 +19,11 @@ export const Body = () => {
       const response = await fetch(SWIGGY_URL);
       const json = await response.json();
       setRestaurantList(
-        json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle
+        json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle
           ?.restaurants
       );
       setFilteredRestaurantList(
-        json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle
+        json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle
           ?.restaurants
       );
     } catch (error) {
