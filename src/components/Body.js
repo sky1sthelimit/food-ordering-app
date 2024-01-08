@@ -5,7 +5,7 @@ import { SWIGGY_URL } from "../utils/constants";
 import Shimmer from "./Shimmer";
 
 export const Body = () => {
-  let [restaurantList, setRestaurantList] = useState([]);
+  const [restaurantList, setRestaurantList] = useState([]);
   const [loading, setLoading] = useState(true);
   const [searchText, setSearchtext] = useState("");
   const [filteredRestaurantList, setFilteredRestaurantList] = useState([]);
@@ -18,14 +18,16 @@ export const Body = () => {
     try {
       const response = await fetch(SWIGGY_URL);
       const json = await response.json();
+
       setRestaurantList(
-        json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle
+        json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle
           ?.restaurants
       );
       setFilteredRestaurantList(
-        json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle
+        json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle
           ?.restaurants
       );
+      console.log(restaurantList);
     } catch (error) {
       console.error("Error fetching data:", error);
       // Handle the error (e.g., display an error message to the user)
