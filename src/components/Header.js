@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { LOGO_URL2 } from "../utils/constants";
-import ShimmerLogo from "./ShimmerLogo";
+import { Link } from "react-router-dom";
+import { FaCartPlus } from "react-icons/fa";
 
 const Header = () => {
   const [loadingLogo, setLoadingLogo] = useState(true);
@@ -21,10 +22,20 @@ const Header = () => {
 
       <div className="nav-items-container">
         <ul className="nav-items">
-          <li>Home</li>
-          <li>About Us</li>
-          <li>Contact Us</li>
-          <li>Cart</li>
+          <li>
+            {" "}
+            <Link to={"/"}>Home</Link>{" "}
+          </li>
+          <li>
+            <Link to={"/about"}>About Us</Link>
+          </li>
+          <li>
+            {" "}
+            <Link to={"/contact"}>Contact Us</Link>
+          </li>
+          <li>
+            <FaCartPlus cursor="pointer" />
+          </li>
         </ul>
       </div>
     </div>

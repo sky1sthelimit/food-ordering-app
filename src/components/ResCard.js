@@ -1,4 +1,5 @@
 import { CDN_URL } from "../utils/constants";
+import { FaStar } from "react-icons/fa";
 
 const ResCard = (props) => {
   let { restaurant } = props;
@@ -11,7 +12,8 @@ const ResCard = (props) => {
 
       <h3 className="res-name">{name}</h3>
       <h3 className="res-extra-info">
-        **{avgRatingString} || <span>{sla.deliveryTime} mins</span>
+        <FaStar /> <span> </span>
+        {avgRatingString} || <span>{sla.deliveryTime} mins</span>
       </h3>
       <h3 className="res-cuisines">{cuisines.join(", ")}</h3>
       <h3 className="res-areaName">{areaName}</h3>
