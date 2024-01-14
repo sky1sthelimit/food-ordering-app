@@ -3,6 +3,7 @@ import { restaurants } from "../utils/data";
 import ResCard from "./ResCard";
 import { SWIGGY_URL } from "../utils/constants";
 import Shimmer from "./Shimmer";
+import { useNavigate } from "react-router-dom";
 
 export const Body = () => {
   const [restaurantList, setRestaurantList] = useState([]);
@@ -20,11 +21,11 @@ export const Body = () => {
       const json = await response.json();
 
       setRestaurantList(
-        json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle
+        json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle
           ?.restaurants
       );
       setFilteredRestaurantList(
-        json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle
+        json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle
           ?.restaurants
       );
       console.log(restaurantList);
