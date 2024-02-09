@@ -6,6 +6,8 @@ import { MENU_URL } from "../utils/constants";
 const RestaurantMenu = () => {
   const [resInfo, setResInfo] = useState(null);
   const { resId } = useParams();
+  const [allMenus, setAllMenus] = useState([]);
+  const [currentMenu, setCurrentMenu] = useState([]);
 
   useEffect(() => {
     fetchMenu();
@@ -15,17 +17,18 @@ const RestaurantMenu = () => {
   const fetchMenu = async () => {
     const response = await fetch(MENU_URL + resId);
     const json = await response.json();
-    //console.log(json);
+    console.log(json);
     setResInfo(json.data);
+    setAllMenus(json.data?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards);
+    setCurrentMenu(
+      json.data?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[2]?.card
+        ?.card?.itemCards
+    );
   };
 
   if (resInfo === null) return <Shimmer />;
 
   const { name, cuisines } = resInfo?.cards[0]?.card?.card?.info;
-
-  //allMenus is an array.
-  const allMenus = resInfo?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards;
-  const currentMenu = allMenus[2]?.card?.card?.itemCards;
 
   return (
     <div className="menu">
