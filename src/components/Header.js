@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react";
 import { LOGO_URL2 } from "../utils/constants";
-import { Link } from "react-router-dom";
-import { FaGlobe, FaCartPlus, FaCircle } from "react-icons/fa";
+import { Link, useNavigate } from "react-router-dom";
+import { FaCartPlus, FaCircle } from "react-icons/fa";
 import useOnlineStatus from "../utils/useOnlineStatus";
 
 const Header = () => {
   const [loadingLogo, setLoadingLogo] = useState(true);
   const isOnline = useOnlineStatus();
+  const navigate = useNavigate();
 
   const handleLogoLoad = () => {
     setLoadingLogo(false);
@@ -16,10 +17,20 @@ const Header = () => {
     setLoadingLogo(true);
   }, []); // Reset loading state when the component mounts
 
+  const navigateToHome = () => {
+    navigate("/");
+    window.location.reload();
+  };
+
   return (
     <div className="flex justify-between bg-pink-100 shadow-md mb-2 sm:bg-green-100 lg:bg-blue-100">
       <div className="logo-container">
-        <img className="w-40" src={LOGO_URL2} alt="Logo" />
+        <img
+          className="w-40 cursor-pointer"
+          src={LOGO_URL2}
+          alt="Logo"
+          onClick={navigateToHome}
+        />
       </div>
 
       <div className="flex items-center">
