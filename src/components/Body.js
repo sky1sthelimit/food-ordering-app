@@ -7,9 +7,10 @@ import { useNavigate } from "react-router-dom";
 
 export const Body = () => {
   const [restaurantList, setRestaurantList] = useState([]);
+  const [filteredRestaurantList, setFilteredRestaurantList] = useState([]);
+
   const [loading, setLoading] = useState(true);
   const [searchText, setSearchtext] = useState("");
-  const [filteredRestaurantList, setFilteredRestaurantList] = useState([]);
 
   useEffect(() => {
     fetchData();
@@ -42,7 +43,7 @@ export const Body = () => {
     let filteredListOfRestaurants = restaurantList.filter((restaurant) => {
       return restaurant.info.avgRating >= 4;
     });
-    setRestaurantList(filteredListOfRestaurants);
+    setFilteredRestaurantList(filteredListOfRestaurants);
   };
 
   const allRestaurants = () => {
@@ -72,28 +73,40 @@ export const Body = () => {
   return loading ? (
     <Shimmer />
   ) : (
-    <div className="body">
-      <div className="search-container">
-        <input
-          type="text"
-          value={searchText}
-          onChange={inputTextHandler}
-          onKeyDown={handleKeyDown}
-        ></input>
-        <button className="search-btn" onClick={searchButtonClickHandler}>
-          Search
-        </button>
-      </div>
-      <div className="btn-container">
-        <button className="remove-filter" onClick={allRestaurants}>
-          All Restaurants
-        </button>
-        <button className="filter-btn" onClick={filterHighRatedRestaurants}>
-          Top Restautants
-        </button>
+    <div className="mx-36 ">
+      <div className="flex">
+        <div className="m-0 p-0">
+          <input
+            type="text"
+            value={searchText}
+            className="border border-solid border-black m-1"
+            onChange={inputTextHandler}
+            onKeyDown={handleKeyDown}
+          ></input>
+          <button
+            className="m-4 px-4 py-0.5 bg-green-200 hover:bg-green-400 rounded-lg"
+            onClick={searchButtonClickHandler}
+          >
+            Search
+          </button>
+        </div>
+        <div className="flex justify-start">
+          <button
+            className="m-2 px-2 h-10 bg-blue-200 hover:bg-blue-400 rounded-lg"
+            onClick={allRestaurants}
+          >
+            All Restaurants
+          </button>
+          <button
+            className="m-2 px-2 h-10 bg-blue-200 hover:bg-blue-400 rounded-lg"
+            onClick={filterHighRatedRestaurants}
+          >
+            Top Restautants
+          </button>
+        </div>
       </div>
 
-      <div className="res-cards-container">
+      <div className="flex flex-wrap">
         {filteredRestaurantList.map((restaurant) => {
           return <ResCard key={restaurant.info.id} restaurant={restaurant} />;
         })}

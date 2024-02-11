@@ -15,16 +15,25 @@ const ResCard = (props) => {
     navigate(`/restaurants/${resId}`);
   };
   return (
-    <div className="res-card" onClick={navigateToMenu}>
-      <img className="res-image" alt="res-logo" src={source}></img>
+    <div
+      className="border border-black border-solid w-52 m-4 p-1 rounded-lg "
+      onClick={navigateToMenu}
+    >
+      <img
+        className=" w-full h-1/2 rounded-lg"
+        alt="res-logo"
+        src={source}
+      ></img>
 
-      <h3 className="res-name">{name}</h3>
-      <h3 className="res-extra-info">
-        <FaStar /> <span> </span>
+      <h3 className="font-bold text-lg py-1">{name}</h3>
+      <h3 className="flex">
+        <FaStar className="mx-1 my-1" /> <span> </span>
         {avgRatingString} || <span>{sla.deliveryTime} mins</span>
       </h3>
       <h3 className="res-cuisines">{cuisines.join(", ")}</h3>
-      <h3 className="res-areaName">{areaName}</h3>
+      <h3 className="whitespace-nowrap overflow-hidden overflow-ellipsis ">
+        {areaName}
+      </h3>
     </div>
   );
 };
