@@ -16,7 +16,7 @@ const ResCard = (props) => {
   };
   return (
     <div
-      className="border border-black border-solid w-52 m-4 p-1 rounded-lg "
+      className="border border-black border-solid w-56 m-2  rounded-lg "
       onClick={navigateToMenu}
     >
       <img
@@ -25,17 +25,32 @@ const ResCard = (props) => {
         src={source}
       ></img>
 
-      <h3 className="font-bold text-lg py-1">{name}</h3>
+      <h3 className="font-bold text-lg py-1 m-1 p-1">{name}</h3>
       <h3 className="flex">
         <FaStar className="mx-1 my-1" /> <span> </span>
         {avgRatingString} || <span>{sla.deliveryTime} mins</span>
       </h3>
-      <h3 className="res-cuisines">{cuisines.join(", ")}</h3>
-      <h3 className="whitespace-nowrap overflow-hidden overflow-ellipsis ">
+      <h3 className="mx-1 whitespace-nowrap overflow-hidden overflow-ellipsis ">
+        {cuisines.join(", ")}
+      </h3>
+      <h3 className=" mx-1 whitespace-nowrap overflow-hidden overflow-ellipsis ">
         {areaName}
       </h3>
     </div>
   );
+};
+
+export const HighRated = (ResCard) => {
+  return (props) => {
+    return (
+      <div>
+        <label className="bg-black text-white absolute rounded-lg m-[.5rem] p-0.5">
+          High Rated
+        </label>
+        <ResCard key={props.restaurant.info.id} restaurant={props.restaurant} />
+      </div>
+    );
+  };
 };
 
 export default ResCard;

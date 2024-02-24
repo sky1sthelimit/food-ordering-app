@@ -1,9 +1,7 @@
 import { useEffect, useState } from "react";
-import { restaurants } from "../utils/data";
-import ResCard from "./ResCard";
+import ResCard, { HighRated } from "./ResCard";
 import { SWIGGY_URL } from "../utils/constants";
 import Shimmer from "./Shimmer";
-import { useNavigate } from "react-router-dom";
 
 export const Body = () => {
   const [restaurantList, setRestaurantList] = useState([]);
@@ -11,6 +9,9 @@ export const Body = () => {
 
   const [loading, setLoading] = useState(true);
   const [searchText, setSearchtext] = useState("");
+  const HighRatedRes = HighRated(ResCard);
+
+  console.log(restaurantList);
 
   useEffect(() => {
     fetchData();
@@ -29,7 +30,6 @@ export const Body = () => {
         json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle
           ?.restaurants
       );
-      console.log(restaurantList);
     } catch (error) {
       console.error("Error fetching data:", error);
       // Handle the error (e.g., display an error message to the user)
@@ -79,12 +79,12 @@ export const Body = () => {
           <input
             type="text"
             value={searchText}
-            className="border border-solid border-black m-1"
+            className="border border-solid border-black m-1 ml-4"
             onChange={inputTextHandler}
             onKeyDown={handleKeyDown}
           ></input>
           <button
-            className="m-4 px-4 py-0.5 bg-green-200 hover:bg-green-400 rounded-lg"
+            className="ml-1 mr-6 my-4 px-4 py-0.5 bg-green-200 hover:bg-green-400 rounded-lg"
             onClick={searchButtonClickHandler}
           >
             Search
@@ -92,13 +92,13 @@ export const Body = () => {
         </div>
         <div className="flex justify-start">
           <button
-            className="m-2 px-2 h-10 bg-blue-200 hover:bg-blue-400 rounded-lg"
+            className="m-2 px-2 h-8 mt-3 bg-blue-200 hover:bg-blue-400 rounded-lg "
             onClick={allRestaurants}
           >
             All Restaurants
           </button>
           <button
-            className="m-2 px-2 h-10 bg-blue-200 hover:bg-blue-400 rounded-lg"
+            className="m-2 px-2 h-8 mt-3 bg-blue-200 hover:bg-blue-400 rounded-lg"
             onClick={filterHighRatedRestaurants}
           >
             Top Restautants
@@ -108,7 +108,11 @@ export const Body = () => {
 
       <div className="flex flex-wrap">
         {filteredRestaurantList.map((restaurant) => {
-          return <ResCard key={restaurant.info.id} restaurant={restaurant} />;
+          return restaurant.info.avgRating >= 4 ? (
+            <HighRatedRes key={restaurant.info.id} restaurant={restaurant} />
+          ) : (
+            <ResCard key={restaurant.info.id} restaurant={restaurant} />
+          );
         })}
       </div>
     </div>

@@ -34,30 +34,41 @@ const Header = () => {
       </div>
 
       <div className="flex items-center">
-        <div className="flex justify-between items-center ">
+        <div
+          className="flex justify-between items-center"
+          title={isOnline ? "Online" : "Offline"}
+        >
           Internet Connectivity :{"  "}
         </div>
-        <div className="mx-2">
+        <div className="mx-2 " title={isOnline ? "Online" : "Offline"}>
           {isOnline ? <FaCircle color="green" /> : <FaCircle color="red" />}
         </div>
 
         <ul className="flex p-4 m-4 justify-between">
-          <li className="px-4">
+          <li className="px-4 ">
             {" "}
-            <Link to={"/"}>Home</Link>{" "}
+            <Link to={"/"} title="Home">
+              Home
+            </Link>{" "}
           </li>
-          <li className="px-4">
-            <Link to={"/about"}>About Us</Link>
+          <li className="px-4 ">
+            <Link to={"/about"} title="About Us">
+              About Us
+            </Link>
           </li>
-          <li className="px-4">
+          <li className="px-4 ">
             {" "}
-            <Link to={"/contact"}>Contact Us</Link>
+            <Link to={"/contact"} title="Contact Us">
+              Contact Us
+            </Link>
           </li>
-          <li className="px-4">
+          <li className="px-4  ">
             {" "}
-            <Link to={"/grocery"}>Grocery</Link>
+            <Link to={"/grocery"} title="Grocery">
+              Grocery
+            </Link>
           </li>
-          <li className="px-4">
+          <li className="px-4 ">
             <FaCartPlus cursor="pointer" />
           </li>
         </ul>
