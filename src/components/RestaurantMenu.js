@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import Shimmer from "./Shimmer";
 import { useParams } from "react-router-dom";
 import { MENU_URL } from "../utils/constants";
+import RestaurantCategory from "./RestaurantCategory";
 
 const RestaurantMenu = () => {
   const [resInfo, setResInfo] = useState(null);
@@ -16,7 +17,6 @@ const RestaurantMenu = () => {
   const fetchMenu = async () => {
     const response = await fetch(MENU_URL + resId);
     const json = await response.json();
-    console.log(json);
     setResInfo(json.data);
     setAllMenus(json.data?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards);
   };
@@ -29,14 +29,17 @@ const RestaurantMenu = () => {
     let element = splitType.pop();
     return element === "ItemCategory";
   });
-  console.log(categories);
 
+  console.log(categories);
   return (
     <div className="text-center">
-      <h1>{name}</h1>
-      <h2>{cuisines.join(", ")}</h2>
-      <h2>Menu</h2>
-      <ul>~||{allMenus[2].card.card.title}||~</ul>
+      <h1 className="font-bold my-6 text-2xl ">{name}</h1>
+      <p className="font-bold text-lg">{cuisines.join(", ")}</p>
+      <div>
+        {categories.map((category) => {
+          return <RestaurantCategory category={category} />;
+        })}
+      </div>
     </div>
   );
 };

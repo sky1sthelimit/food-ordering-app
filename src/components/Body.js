@@ -73,7 +73,7 @@ export const Body = () => {
   return loading ? (
     <Shimmer />
   ) : (
-    <div className="mx-36 ">
+    <div className="mx-36">
       <div className="flex">
         <div className="m-0 p-0">
           <input
@@ -119,4 +119,3 @@ export const Body = () => {
   );
 };
 export default Body;
-//new new
