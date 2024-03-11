@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { FaArrowDown, FaArrowUp } from "react-icons/fa";
 import RestaurantCategoryContent from "./RestaurantCategoryContent";
+import { IoIosArrowUp, IoIosArrowDown } from "react-icons/io";
 
 const RestaurantCategory = (props) => {
   const [category] = useState(props.category);
@@ -17,12 +17,17 @@ const RestaurantCategory = (props) => {
         <span>
           {title} ({itemCards.length})
         </span>
-        <span>{openToggle ? <FaArrowUp /> : <FaArrowDown />}</span>
+        <span>{openToggle ? <IoIosArrowUp /> : <IoIosArrowDown />}</span>
       </div>
       <div>
         {openToggle ? (
           itemCards.map((item) => {
-            return <RestaurantCategoryContent item={item} />;
+            return (
+              <div>
+                <RestaurantCategoryContent item={item} />
+                <hr className="border-gray-300" />
+              </div>
+            );
           })
         ) : (
           <div></div>

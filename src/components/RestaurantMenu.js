@@ -29,15 +29,26 @@ const RestaurantMenu = () => {
     let element = splitType.pop();
     return element === "ItemCategory";
   });
-
-  console.log(categories);
+  console.log("resInfo", resInfo);
+  console.log("categories", categories);
   return (
-    <div className="text-center">
-      <h1 className="font-bold my-6 text-2xl ">{name}</h1>
-      <p className="font-bold text-lg">{cuisines.join(", ")}</p>
+    <div>
+      <div className="flex justify-between w-8/12 mx-auto">
+        <div className="m-4">
+          <h1 className="font-bold  my-2 text-2xl ">{name}</h1>
+          <p className="font-thin text-base">{cuisines.join(", ")}</p>
+        </div>
+        <div className="my-4 mr-4">Average Rating</div>
+      </div>
+      <hr className="w-8/12 mx-auto border-gray-300 border-dashed" />
       <div>
         {categories.map((category) => {
-          return <RestaurantCategory category={category} />;
+          return (
+            <div>
+              <RestaurantCategory category={category} />
+              <hr className="w-8/12 mx-auto border-8 border-gray-100" />
+            </div>
+          );
         })}
       </div>
     </div>

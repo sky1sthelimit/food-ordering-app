@@ -32,14 +32,17 @@ export default RestaurantCategoryContent = (props) => {
       </div>
       {/**2nd div -> will contain pics */}
       {imageId ? (
-        <div className="bg-green-100 rounded-lg w-3/12 flex justify-center items-center">
+        <div className="bg-green-100 rounded-lg w-3/12 flex justify-center ">
           <img
             src={CDN_URL + imageId}
             className="h-[100%] w-[100%] rounded-lg "
           ></img>
+          <button className="absolute px-12 py-2 bg-white shadow-lg text-green-600 rounded-md my-[7rem]">
+            <p className="text-sm font-semibold">ADD</p>
+          </button>
         </div>
       ) : (
-        <div></div>
+        <div className="w-3/12"></div>
       )}
     </div>
   );
