@@ -8,6 +8,7 @@ const RestaurantMenu = () => {
   const [resInfo, setResInfo] = useState(null);
   const { resId } = useParams();
   const [allMenus, setAllMenus] = useState([]);
+  const [selectedIndex, setSelectedIndex] = useState(null);
 
   useEffect(() => {
     fetchMenu();
@@ -42,12 +43,14 @@ const RestaurantMenu = () => {
       </div>
       <hr className="w-8/12 mx-auto border-gray-300 border-dashed" />
       <div>
-        {categories.map((category) => {
+        {categories.map((category, index) => {
           return (
-            <div>
-              <RestaurantCategory category={category} />
-              <hr className="w-8/12 mx-auto border-8 border-gray-100" />
-            </div>
+            <RestaurantCategory
+              category={category}
+              isOpen={index === selectedIndex ? true : false}
+              setSelectedIndex={setSelectedIndex}
+              index={index}
+            />
           );
         })}
       </div>
